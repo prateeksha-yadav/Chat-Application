@@ -1,0 +1,35 @@
+{
+	"name": "chat-backend",
+	"version": "1.0.0",
+	"description": "A real-time chat application backend built with Node.js, Express, and MongoDB",
+	"main": "backend/server.js",
+	"scripts": {
+	  "server": "nodemon backend/server.js",
+	  "start": "node backend/server.js",
+	  "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+	},
+	"type": "module",
+	"keywords": [
+	  "chat",
+	  "express",
+	  "socket.io",
+	  "mongodb",
+	  "real-time"
+	],
+	"author": "Prateeksha Yadav",
+	"license": "MIT",
+	"dependencies": {
+	  "bcryptjs": "^2.4.3",
+	  "cookie-parser": "^1.4.6",
+	  "dotenv": "^16.5.0",
+	  "express": "^4.18.2",
+	  "jsonwebtoken": "^9.0.2",
+	  "mongodb": "^6.16.0",
+	  "mongoose": "^8.1.1",
+	  "socket.io": "^4.7.4"
+	},
+	"devDependencies": {
+	  "nodemon": "^3.0.3"
+	}
+  }
+  
