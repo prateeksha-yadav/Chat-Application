@@ -2,6 +2,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 
+const API_BASE_URL = import.meta.env.PROD
+	? "https://chat-application-prateeksha-yadav.onrender.com"
+	: "http://localhost:5000";
+
 const useLogin = () => {
 	const [loading, setLoading] = useState(false);
 	const { setAuthUser } = useAuthContext();
@@ -11,7 +15,7 @@ const useLogin = () => {
 		if (!success) return;
 		setLoading(true);
 		try {
-			const res = await fetch("/api/auth/login", {
+			const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ username, password }),

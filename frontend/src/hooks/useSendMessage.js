@@ -2,6 +2,10 @@ import { useState } from "react";
 import useConversation from "../zustand/useConversation";
 import toast from "react-hot-toast";
 
+const API_BASE_URL = import.meta.env.PROD
+	? "https://chat-application-prateeksha-yadav.onrender.com"
+	: "http://localhost:5000";
+
 const useSendMessage = () => {
 	const [loading, setLoading] = useState(false);
 	const { messages, setMessages, selectedConversation } = useConversation();
@@ -9,7 +13,7 @@ const useSendMessage = () => {
 	const sendMessage = async (message) => {
 		setLoading(true);
 		try {
-			const res = await fetch(`/api/messages/send/${selectedConversation._id}`, {
+			const res = await fetch(`${API_BASE_URL}/api/messages/send/${selectedConversation._id}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
