@@ -10,6 +10,8 @@ import userRoutes from "./routes/user.routes.js";
 
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import { app, server } from "./socket/socket.js";
+// import dotenv from "dotenv";
+
 
 dotenv.config();
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useAuthContext } from "../context/AuthContext";
 
 const API_BASE_URL = import.meta.env.PROD
 	? "https://chat-application-prateeksha-yadav.onrender.com"
@@ -8,12 +9,17 @@ const API_BASE_URL = import.meta.env.PROD
 const useGetConversations = () => {
 	const [loading, setLoading] = useState(false);
 	const [conversations, setConversations] = useState([]);
+	const { authUser } = useAuthContext();
 
 	useEffect(() => {
 		const getConversations = async () => {
 			setLoading(true);
 			try {
-				const res = await fetch(`${API_BASE_URL}/api/users`);
+				const res = await fetch(`${API_BASE_URL}/api/users`, {
+					headers: {
+						Authorization: `Bearer ${authUser?.token}`,
+					},
+				});
 				const data = await res.json();
 				if (data.error) {
 					throw new Error(data.error);
@@ -26,8 +32,10 @@ const useGetConversations = () => {
 			}
 		};
 
-		getConversations();
-	}, []);
+		if (authUser?.token) {
+			getConversations();
+		}
+	}, [authUser]);
 
 	return { loading, conversations };
 };
